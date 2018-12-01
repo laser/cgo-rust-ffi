@@ -1,0 +1,15 @@
+[package]
+name = "hasher"
+version = "0.1.0"
+authors = ["laser <l@s3r.me>"]
+edition = "2018"
+license = "MIT"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+sha2 = "0.8.0"
+
+[build-dependencies]
+cbindgen = "0.6.7"
