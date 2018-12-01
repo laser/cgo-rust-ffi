@@ -1,3 +1,5 @@
+// +build linux, cgo darwin,cgo
+
 package main
 
 /*
