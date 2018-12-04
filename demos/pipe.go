@@ -26,10 +26,7 @@ func RunNamedPipeDemo() {
 
 	name := "/tmp/pipey"
 
-	err := os.Remove(name)
-	if err != nil {
-		panic(err)
-	}
+	_ = os.Remove(name) // don't blow up if file doesn't exist
 
 	f, err := sharedpipe.NewFifo(name, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 	if err != nil {
