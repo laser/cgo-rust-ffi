@@ -5,6 +5,8 @@ gave me a good excuse to mess around with SHM_GET, SHM_OPEN, MMAP, and mkfifo.
 
 ## Examples
 
+1. (DONE) Generate header from Rust API
+1. (DONE) Generate CGO from previously-generated header
 1. (DONE) Go calls Rust through CGO and streams bytes using FIFO file (named pipe)
 1. (DONE) Go calls Rust through CGO, sharing memory (uses SHM_OPEN + MMAP)
 1. (WIP) Go allocates slice in C heap, copies from Go heap and passes pointers to Rust
@@ -22,4 +24,7 @@ gave me a good excuse to mess around with SHM_GET, SHM_OPEN, MMAP, and mkfifo.
 
 ## Build and Run Tests
 
-To build and run demos, run `make`.
+To build and run demos:
+
+- `pushd hasher && make && popd`
+- `go run main.go`

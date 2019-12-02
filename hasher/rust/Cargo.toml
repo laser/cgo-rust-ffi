@@ -11,6 +11,7 @@ crate-type = ["staticlib"]
 [dependencies]
 sha2 = "0.8.0"
 memmap = "0.7.0"
+libc = "0.2.58"
 
 [build-dependencies]
-cbindgen = "0.6.7"
+cbindgen = "= 0.10.0"

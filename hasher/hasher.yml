@@ -1,0 +1,28 @@
+---
+GENERATOR:
+  PackageName: cgo
+  PackageDescription:
+  PackageLicense:
+  Options:
+    SafeStrings: true
+  Includes:
+    - hasher.h
+  FlagGroups:
+    - {name: LDFLAGS, flags: ["-L${SRCDIR} -lhasher"]}
+
+PARSER:
+  IncludePaths:
+    - /Library/Developer/CommandLineTools/SDKs/MacOSX10.14.sdk/usr/include
+    - /Library/Developer/CommandLineTools/usr/lib/clang/10.0.1/include
+  SourcesPaths:
+    - ./cgo/hasher.h
+
+TRANSLATOR:
+  Rules:
+    function:
+      - {action: accept, from: "^checksum"}
+    private:
+      - {transform: unexport}
+    post-global:
+      - {transform: export}
+      - {load: snakecase}

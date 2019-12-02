@@ -1,7 +1,3 @@
-#![feature(libc)]
-#![feature(bufreader_buffer)]
-
-extern crate libc;
 extern crate memmap;
 extern crate sha2;
 
@@ -15,7 +11,7 @@ use std::io::Read;
 use std::os::unix::io::{FromRawFd};
 
 #[no_mangle]
-pub unsafe extern "C" fn checksum_file(file_path: *mut libc::c_char) -> *const libc::c_char {
+pub unsafe extern "C" fn checksum_file(file_path: *const libc::c_char) -> *const libc::c_char {
     let c_str: &CStr = CStr::from_ptr(file_path);
     let str_slice: &str = c_str.to_str().expect("could not convert C string");
 
@@ -52,7 +48,7 @@ pub unsafe extern "C" fn checksum_file(file_path: *mut libc::c_char) -> *const l
 
 #[no_mangle]
 pub unsafe extern "C" fn checksum_sharedmem(
-    region_name: *mut libc::c_char,
+    region_name: *const libc::c_char,
     size: libc::size_t,
 ) -> *const libc::c_char {
     let mut hasher = Sha256::new();

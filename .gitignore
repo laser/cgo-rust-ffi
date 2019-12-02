@@ -4,6 +4,13 @@
 *.dll
 *.so
 *.dylib
+**/hasher.go
+**/.install-hasher
+**/*.a
+**/*.h
+/hasher/cgo/*.h
+/hasher/cgo/*.a
+/hasher/cgo/*.go
 
 # Test binary, build with `go test -c`
 *.test

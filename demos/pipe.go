@@ -1,17 +1,11 @@
-// +build linux, cgo darwin,cgo
-
 package demos
 
-/*
-#cgo LDFLAGS: -L${SRCDIR}/../hasher/target/release -lhasher
-#include "../hasher/libhasher.h"
-*/
-import "C"
 import (
 	"fmt"
 	"os"
 	"sync"
 
+	"github.com/laser/cgo-rust-ffi/hasher/cgo"
 	"github.com/laser/cgo-rust-ffi/sharedpipe"
 )
 
@@ -38,7 +32,7 @@ func RunNamedPipeDemo() {
 
 	// schedule goroutine which makes call into Rust lib to create digest
 	go func() {
-		digest := C.GoString(C.checksum_file(C.CString(name)))
+		digest := cgo.ChecksumFile(name)
 		fmt.Printf("[golang] digest=%s\n", digest)
 		wg.Done()
 	}()
