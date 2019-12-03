@@ -6,7 +6,7 @@ all: $(DEPS)
 $(DEPS): .install-hasher  ;
 
 .install-hasher: rust
-	pushd rust && cargo build --release --all; popd
+	cd rust && cargo build --release --all; cd ..
 	find ./rust/target/release -type f -name "hasher.h" -print0 | xargs -0 ls -t | head -n 1 | xargs -I {} cp {} ./cgo/hasher.h
 	find ./rust/target/release -type f -name "libhasher.a" -print0 | xargs -0 ls -t | head -n 1 | xargs -I {} cp {} ./cgo/libhasher.a
 	c-for-go --ccincl --ccdefs hasher.yml

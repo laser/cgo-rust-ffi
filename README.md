@@ -27,5 +27,5 @@ gave me a good excuse to mess around with SHM_GET, SHM_OPEN, MMAP, and mkfifo.
 
 To build and run demos:
 
-- `pushd hasher && make && popd`
+- `cd hasher && make ; cd ..`
 - `go run main.go`
