@@ -17,6 +17,7 @@ gave me a good excuse to mess around with SHM_GET, SHM_OPEN, MMAP, and mkfifo.
 1. Go buy a Mac: https://apple.com
 1. Install Rust: `curl https://sh.rustup.rs -sSf | sh`
 1. Install Golang: https://golang.org/dl/
+1. Install c-for-go: `go get github.com/xlab/c-for-go`
 
 ## Caveats
 
