@@ -1,15 +1,10 @@
-// +build linux, cgo darwin,cgo
-
 package demos
 
-/*
-#cgo LDFLAGS: -L${SRCDIR}/../hasher/target/release -lhasher
-#include "../hasher/libhasher.h"
-*/
-import "C"
 import (
 	"fmt"
+	"math/rand"
 
+	"github.com/laser/cgo-rust-ffi/hasher/cgo"
 	"github.com/laser/cgo-rust-ffi/sharedmem"
 )
 
@@ -22,7 +17,7 @@ func RunSharedMemDemo() {
 	fmt.Println("[golang] running shared memory demo")
 	fmt.Println("[golang] **************************")
 
-	name := "/foobarbaz"
+	name := fmt.Sprintf("/tmp/foo%d", rand.Int())
 	size := 160000
 
 	r1, err := sharedmem.NewProducerRegion(name, size)
@@ -37,7 +32,7 @@ func RunSharedMemDemo() {
 	fmt.Println("[golang] wrote everything")
 
 	// call in to Rust, passing metadata used to reconstruct memory map
-	digest := C.GoString(C.checksum_sharedmem(C.CString(name), C.size_t(size)))
+	digest := cgo.ChecksumSharedmem(name, uint(size))
 	fmt.Printf("[golang] digest=%s\n", digest)
 
 	fmt.Println("[golang] **************************")

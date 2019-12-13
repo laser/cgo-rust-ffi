@@ -1,0 +1,19 @@
+header = """
+/* hasher Header */
+
+#ifdef __cplusplus
+extern "C" {{
+#endif
+"""
+trailer = """
+#ifdef __cplusplus
+} /* extern "C" */
+#endif
+"""
+
+include_guard = "HASHER_H"
+include_version = true
+language = "C"
+
+[parse]
+parse_deps = false

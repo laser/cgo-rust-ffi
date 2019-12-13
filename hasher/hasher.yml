@@ -1,0 +1,29 @@
+---
+GENERATOR:
+  PackageName: cgo
+  PackageDescription:
+  PackageLicense:
+  Options:
+    SafeStrings: true
+  Includes:
+    - hasher.h
+  FlagGroups:
+    - {name: LDFLAGS, flags: ["-L${SRCDIR} -lhasher"]}
+
+PARSER:
+  Defines:
+    __has_include_next(x): 1
+  IncludePaths:
+    - /usr/include
+  SourcesPaths:
+    - ./cgo/hasher.h
+
+TRANSLATOR:
+  Rules:
+    function:
+      - {action: accept, from: "^checksum"}
+    private:
+      - {transform: unexport}
+    post-global:
+      - {transform: export}
+      - {load: snakecase}
